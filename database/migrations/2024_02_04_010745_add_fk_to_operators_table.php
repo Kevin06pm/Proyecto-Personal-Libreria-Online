@@ -26,7 +26,6 @@ return new class extends Migration
     {
         Schema::table('operators', function (Blueprint $table) {
             $table->dropForeign('id_coordinador');
-            
             $table->dropColumn('id_coordinador');
         });
     }
