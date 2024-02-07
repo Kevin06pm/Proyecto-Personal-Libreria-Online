@@ -11,10 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('calls', function (Blueprint $table) {
-            $table->id();
-            $table->string('codigo')->unique();
-            $table->timestamps();
+        Schema::table('comments', function (Blueprint $table) {
+            // $table->unsignedBigInteger('codigo_llamada')->nullable()
         });
     }
 
@@ -23,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('calls');
+        Schema::table('comments', function (Blueprint $table) {
+            //
+        });
     }
 };

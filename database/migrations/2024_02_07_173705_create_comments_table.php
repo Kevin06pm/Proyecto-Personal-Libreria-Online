@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('calls', function (Blueprint $table) {
-            $table->bigIncrements('codigo');
-            
+        Schema::create('comments', function (Blueprint $table) {
+            $table->id();
+            $table->string('item')->unique();
+            $table->string('texto');
+
             $table->timestamps();
         });
     }
@@ -23,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('calls');
+        Schema::dropIfExists('comments');
     }
 };

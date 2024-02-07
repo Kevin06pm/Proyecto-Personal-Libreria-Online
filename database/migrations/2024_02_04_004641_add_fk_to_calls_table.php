@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::table('calls', function (Blueprint $table) {
             //
             $table->bigInteger('num_doc_contacto')->unsigned()->after('codigo');
-            $table->foreign('num_doc_contacto')->references('numero_documento')->on('contacts')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('num_doc_contacto')->references('id')->on('contacts')->onUpdate('cascade')->onDelete('cascade');
             $table->bigInteger('operador_id')->unsigned()->after('codigo');
             $table->foreign('operador_id')->references('id')->on('operators')->onUpdate('cascade')->onDelete('cascade');
         });
