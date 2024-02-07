@@ -11,17 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('operators', function (Blueprint $table) {
-            $table->id();
-            $table->integer('numero_documento');
-            $table->string('tipo_documento');
-            $table->string('nombre');
-            $table->string('apellido');
-            $table->date('fecha_ingreso');
+        Schema::create('calls', function (Blueprint $table) {
+            $table->bigIncrements('codigo');
             
-
-            //
-           
             $table->timestamps();
         });
     }
@@ -31,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('operators');
+        Schema::dropIfExists('calls');
     }
 };
