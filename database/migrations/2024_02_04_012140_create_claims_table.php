@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('claims', function (Blueprint $table) {
             $table->id();
-            $table->string('codigo')->unique();
             $table->timestamps();
         });
     }

@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('states', function (Blueprint $table) {
             $table->id();
-            $table->integer('codigo')->unique();
 
             $table->string('descripcion');
 
