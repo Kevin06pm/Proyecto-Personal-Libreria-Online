@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('contacts', function (Blueprint $table) {
             $table->id();
             $table->integer('numero_documento')->unique();
+            $table->integer('tipo_documento')->unique();
             $table->string('nombre');
             $table->string('apellidos');
             $table->string('calle');
             $table->integer('numero_domicilio');
-            $table->integer('tipo_documento');
             $table->timestamps();
         });
     }

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         // Schema::dropIfExists('buys');
         Schema::table('buys', function (Blueprint $table) {
-            $table->bigInteger('cod_llamada')->unsigned()->after('numero');
+            $table->bigInteger('cod_llamada')->unsigned()->after('id');
             $table->foreign('cod_llamada')->references('id')->on('calls')->onUpdate('cascade')->onDelete('cascade');
         });
     }

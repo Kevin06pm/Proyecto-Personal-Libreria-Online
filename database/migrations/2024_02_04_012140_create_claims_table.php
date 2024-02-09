@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('claims', function (Blueprint $table) {
             $table->id();
-            $table->string('numero')->unique();
+            $table->integer('numero');
             $table->timestamps();
         });
     }

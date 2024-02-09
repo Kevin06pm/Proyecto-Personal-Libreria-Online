@@ -13,7 +13,7 @@ return new class extends Migration
     {
         //Schema::dropIfExists('claims');
         Schema::table('claims', function (Blueprint $table) {
-            $table->bigInteger('operador_id')->unsigned()->after('numero');
+            $table->bigInteger('operador_id')->unsigned()->after('id');
             $table->foreign('operador_id')->references('id')->on('operators')->onUpdate('cascade')->onDelete('cascade');
 
             $table->bigInteger('cod_estado')->unsigned()->after('operador_id');
