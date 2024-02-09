@@ -11,11 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
+<<<<<<< HEAD
         // Schema::dropIfExists('operators');
         Schema::table('operators', function (Blueprint $table) {
             $table->unsignedBigInteger('id_coordinador')->nullable()->after('id'); //unsignedBigInteger:  es para que solo puedan ser positivos y no negativos
             $table->foreign('id_coordinador')->references('id')->on('operators')->onDelete('cascade');
             
+=======
+        //  Schema::dropIfExists('operators');
+        Schema::table('operators', function (Blueprint $table) {
+            $table->unsignedBigInteger('id_coordinador')->nullable()->after('id'); //unsignedBigInteger:  es para que solo puedan ser positivos y no negativos
+            $table->foreign('id_coordinador')->references('id')->on('operators')->onDelete('cascade');
+>>>>>>> gian
         });
     }
 
@@ -27,6 +34,10 @@ return new class extends Migration
         Schema::table('operators', function (Blueprint $table) {
             $table->dropForeign('id_coordinador');
             $table->dropColumn('id_coordinador');
+<<<<<<< HEAD
+=======
+            Schema::dropIfExists('operators');
+>>>>>>> gian
         });
     }
 };

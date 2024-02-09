@@ -13,9 +13,12 @@ return new class extends Migration
     {
         Schema::create('states', function (Blueprint $table) {
             $table->id();
+<<<<<<< HEAD
 
+=======
+            $table->string('codigo')->unique();
+>>>>>>> gian
             $table->string('descripcion');
-
             $table->timestamps();
         });
     }
