@@ -12,7 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('item_bills', function (Blueprint $table) {
-            //
+            $table->bigInteger('num_factura')->unsigned()->after('id');
+            $table->foreign('num_factura')->references('id')->on('calls')->onUpdate('cascade')->onDelete('cascade');
+
+            $table->bigInteger('cod_producto')->unsigned()->after('num_factura');
+            $table->foreign('cod_producto')->references('id')->on('products')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
