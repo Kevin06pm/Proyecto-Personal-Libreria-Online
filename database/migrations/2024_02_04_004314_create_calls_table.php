@@ -12,8 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('calls', function (Blueprint $table) {
-            $table->bigIncrements('codigo');
-            
+            $table->id();
             $table->timestamps();
         });
     }
