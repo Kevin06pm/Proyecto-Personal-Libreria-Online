@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('claims', function (Blueprint $table) {
             $table->id();
-<<<<<<< HEAD
-=======
+
             $table->integer('numero');
->>>>>>> gian
+
             $table->timestamps();
         });
     }
