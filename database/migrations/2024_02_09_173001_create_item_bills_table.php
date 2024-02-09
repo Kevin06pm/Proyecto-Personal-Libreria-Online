@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('calls', function (Blueprint $table) {
+        Schema::create('item_bills', function (Blueprint $table) {
             $table->id();
 
-            $table->integer('numero_telefono');
-            $table->date('fecha_llamada');
-            $table->integer('hora_llamada');
-            $table->integer('numero_linea_interno');
+            $table->integer('cantidad');
+
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('calls');
+        Schema::dropIfExists('item_bills');
     }
 };
