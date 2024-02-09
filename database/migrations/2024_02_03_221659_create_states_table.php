@@ -12,10 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('states', function (Blueprint $table) {
-            $table->bigIncrements('codigo');
-
+            $table->id();
+            $table->integer('codigo')->unique();
             $table->string('descripcion');
-
             $table->timestamps();
         });
     }
