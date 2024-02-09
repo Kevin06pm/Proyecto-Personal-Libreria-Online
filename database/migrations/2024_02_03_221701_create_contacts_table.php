@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('apellidos');
             $table->string('calle');
             $table->integer('numero_domicilio');
-            $table->integer('tipo_documento');
+            $table->integer('tipo_documento')->unique();
             $table->timestamps();
         });
     }
