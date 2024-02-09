@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('claims', function (Blueprint $table) {
-            $table->id();
-<<<<<<< HEAD
-=======
-            $table->integer('numero');
->>>>>>> gian
-            $table->timestamps();
+        Schema::table('item_bills', function (Blueprint $table) {
+            //
         });
     }
 
@@ -26,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('claims');
+        Schema::table('item_bills', function (Blueprint $table) {
+            //
+        });
     }
 };
