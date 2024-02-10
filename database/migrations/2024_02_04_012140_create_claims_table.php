@@ -13,10 +13,6 @@ return new class extends Migration
     {
         Schema::create('claims', function (Blueprint $table) {
             $table->id();
-<<<<<<< HEAD
-=======
-            $table->integer('numero_reclamo')->unique();
->>>>>>> d775a1be347e3210f7e498cb742837832c03fee3
             $table->timestamps();
         });
     }
