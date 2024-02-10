@@ -11,15 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('contacts', function (Blueprint $table) {
+        Schema::create('bills', function (Blueprint $table) {
             $table->id();
-
-            $table->integer('numero_documento')->unique();
-            $table->integer('tipo_documento')->unique();
-            $table->string('nombre');
-            $table->string('apellidos');
-            $table->string('calle');
-            $table->integer('numero_domicilio');
+            $table->integer('numero_factura')->unique();
             $table->timestamps();
         });
     }
@@ -29,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('contacts');
+        Schema::dropIfExists('bills');
     }
 };
