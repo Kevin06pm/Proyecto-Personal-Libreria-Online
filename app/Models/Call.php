@@ -22,4 +22,8 @@ class Call extends Model
     public function comment() : HasOne{
         return $this->hasOne(Call::class);
     }
+
+    public function buy() : HasOne{
+        return $this->hasOne(Buy::class);
+    }
 }
