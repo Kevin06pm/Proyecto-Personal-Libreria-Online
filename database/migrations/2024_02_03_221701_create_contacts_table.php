@@ -13,11 +13,6 @@ return new class extends Migration
     {
         Schema::create('contacts', function (Blueprint $table) {
             $table->id();
-<<<<<<< HEAD
-=======
-            $table->integer('numero_documento')->unique();
-            $table->integer('tipo_documento')->unique();
->>>>>>> gian
             $table->string('nombre');
             $table->string('apellidos');
             $table->string('calle');
