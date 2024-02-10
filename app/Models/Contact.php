@@ -15,5 +15,8 @@ class Contact extends Model
     // Relacion Contacto - Call
     public function calls() : HasMany {
         return $this->hasMany(Call::class);//A un contacto le pueden hacer varias llamadas
+}
+    public function calls() : HasMany{
+        return $this->hasMany(Call::class);
     }
 }
