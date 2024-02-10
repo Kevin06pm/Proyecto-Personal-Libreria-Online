@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('calls', function (Blueprint $table) {
             $table->id();
-            $table->integer('numero_telefono')->unique();
+            $table->integer('numero_telefono');
             $table->date('fecha_llamada');
             $table->integer('hora_llamada');
             $table->integer('numero_linea_interno');
