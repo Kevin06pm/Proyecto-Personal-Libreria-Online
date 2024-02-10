@@ -15,8 +15,10 @@ return new class extends Migration
 
             $table->id();
 
+
             $table->integer('numero');
 
+            $table->integer('numero_reclamo')->unique();
             $table->timestamps();
         });
     }
