@@ -30,4 +30,14 @@ class Operator extends Model
     public function senior() :HasOne{
         return $this->hasOne(Senior::class);
     }
+    public function calls() : HasMany{
+        return $this->hasMany(Call::class); //
+
+    }
+
+    //relacion reflexiva 
+
+
+
+
 }

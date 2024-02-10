@@ -16,4 +16,5 @@ class Contact extends Model
     public function calls() : HasMany {
         return $this->hasMany(Call::class);//A un contacto le pueden hacer varias llamadas
 }
+
 }

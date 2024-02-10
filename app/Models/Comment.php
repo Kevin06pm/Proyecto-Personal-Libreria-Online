@@ -16,4 +16,7 @@ class Comment extends Model
     public function call() : BelongsTo {
         return $this->belongsTo(Call::class);
     }
+    public function claim() : BelongsTo{
+        return $this->belongsTo(Claim::class);
+    }
 }
