@@ -19,7 +19,7 @@ class Operator extends Model
         return $this->belongsTo(Operator::class);
     }
     public function operators() :HasMany{
-        return $this->hasMany(Operator::class, 'id_coordinador');
+        return $this->hasMany(Operator::class, 'id_coordinador');//Operadores
     }
 
     // Relacion Operador - Junior 1-1
