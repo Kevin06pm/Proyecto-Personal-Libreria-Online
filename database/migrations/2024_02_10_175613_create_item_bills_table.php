@@ -13,9 +13,8 @@ return new class extends Migration
     {
         Schema::create('item_bills', function (Blueprint $table) {
             $table->id();
-
+            $table->string('item')->unique();
             $table->integer('cantidad');
-
             $table->timestamps();
         });
     }

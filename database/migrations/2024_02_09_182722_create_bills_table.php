@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('item_bills', function (Blueprint $table) {
-            //
+        Schema::create('bills', function (Blueprint $table) {
+            $table->id();
+            $table->integer('numero_factura')->unique();
+            $table->timestamps();
         });
     }
 
@@ -21,8 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('item_bills', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('bills');
     }
 };
