@@ -11,6 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::dropIfExists('calls');
+
         Schema::table('calls', function (Blueprint $table) {
             $table->bigInteger('num_doc_contacto')->unsigned()->after('id');
             $table->foreign('num_doc_contacto')->references('id')->on('contacts')->onUpdate('cascade')->onDelete('cascade');
@@ -26,10 +28,10 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('calls', function (Blueprint $table) {
-            $table->dropForeign('num_doc_contacto');
-            $table->dropColumn('num_doc_contacto');
-            $table->dropForeign('operador_id');
-            $table->dropColumn('operador_id');
+            // $table->dropForeign('num_doc_contacto');
+            // $table->dropColumn('num_doc_contacto');
+            // $table->dropForeign('operador_id');
+            // $table->dropColumn('operador_id');
         });
     }
 };

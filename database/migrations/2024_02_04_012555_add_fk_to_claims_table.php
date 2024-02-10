@@ -11,14 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-<<<<<<< HEAD
         // Schema::dropIfExists('claims');
         Schema::table('claims', function (Blueprint $table) {
 
-=======
-        //Schema::dropIfExists('claims');
-        Schema::table('claims', function (Blueprint $table) {
->>>>>>> gian
             $table->bigInteger('operador_id')->unsigned()->after('id');
             $table->foreign('operador_id')->references('id')->on('operators')->onUpdate('cascade')->onDelete('cascade');
 
