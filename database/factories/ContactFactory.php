@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-
+ 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Contact>
  */
@@ -15,16 +15,15 @@ class ContactFactory extends Factory
      * @return array<string, mixed>
      */
     public function definition(): array
-    {
-        $numeroRandom = rand(1,100);
-        
+    {        
         return [
-            'numero_documento' => fake()->unique()->randomElement($numeroRandom),
-            'tipo_documento' => fake()->unique()->randomElement(['DNI','Pasaporte','NIF']),
+            'numero_documento' => fake()->dni(),
+            'tipo_documento' => fake()->randomElement(['DNI','NIF']),
             'nombre' => fake()->name(),
-            'apellido' => fake()->lastName(),
-            'calle' => fake()->streetAddress(),
-            'numero_domicilio' => fake()->numberBetween(1, 50)
+            'apellidos' => fake()->lastName(),
+            'calle' => fake()->streetName(),
+            'numero_domicilio' => fake()->numberBetween(1, 50),
+            'cod_postal' => fake()->postcode()
         ];
     }
 }
