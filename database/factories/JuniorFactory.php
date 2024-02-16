@@ -4,8 +4,12 @@ namespace Database\Factories;
 
 use App\Models\Junior;
 use App\Models\Operator;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Testing\Fakes\Fake;
+use PHPUnit\TextUI\XmlConfiguration\Logging\Junit;
+use Illuminate\Support\Facades\Cache;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Junior>
@@ -17,31 +21,30 @@ class JuniorFactory extends Factory
      *
      * @return array<string, mixed>
      */
+
     public function definition(): array
     {
 
-        $operadoresIds = Operator::pluck('id');
-        $cont_id_oper = $operadoresIds->count();
-        $numeroRandom = rand(1, $cont_id_oper);
-        $id_oper = Junior::pluck('operator_id');
-
-        for ($i = 0; $i < count($id_oper); $i++) {
-            if ($id_oper[$i] === $operadoresIds[$numeroRandom - 1]) {
-                $numeroRandom = rand(1, $cont_id_oper);
-                $i = -1;  
-            }
-        }
-
-
-
-        // $fecha_ingreso = $operadores->fecha_ingreso;
-        // $fecha_actual = date('now');
-        // $diferencia = $fecha_actual-$fecha_ingreso;
-        // 'operator_id' => fake()->numberBetween(1, $operadores->count())
-        $numero = 5;
+        $numero_operadores =  Operator::all()->pluck('id')->count();
+        $valor = fake()->unique()->numberBetween(1, $numero_operadores);
+        $antiguedad = Operator::selectRaw('CONCAT(
+            TIMESTAMPDIFF(YEAR, fecha_ingreso, NOW()), 
+            " años con ", 
+            TIMESTAMPDIFF(MONTH, fecha_ingreso, NOW()) % 12, 
+            " meses"
+        ) AS antiguedad')
+            ->where('id', $valor)
+            ->pluck('antiguedad')->first(); //first(), devuelve la primera fila de la consulta, esto es porque si no el texto le da de una manera rara
+        // Este metodo viene de una consulta en sql la cual esta adaptada en eloquent
+        // La consulta fue la siguiente:
+        /* SELECT 
+            CONCAT(TIMESTAMPDIFF(YEAR, fecha_ingreso, NOW()), " AÑOS CON ", TIMESTAMPDIFF(MONTH, fecha_ingreso, NOW()) % 12, " MESES") AS años_transcurridos
+        FROM operators WHERE id in (select operator_id from juniors where operator_id = alguna_variable);*/
+        // La anterior es una consulta con una subconsulta, no se me ocurrio de otra manera
         return [
-            'operator_id' => $numeroRandom,
-            'antiguedad' => fake()->date()
+            'operator_id' => $valor,
+
+            'antiguedad' => $antiguedad
         ];
     }
 }

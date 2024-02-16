@@ -4,8 +4,14 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Bill;
+use App\Models\Buy;
+use App\Models\Claim;
+use App\Models\Comment;
 use App\Models\Contact;
+use App\Models\itemBill;
 use App\Models\Operator;
+use App\Models\State;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -24,6 +30,16 @@ class DatabaseSeeder extends Seeder
 
         $this->call(ContactSeeder::class);
         $this->call(OperatorSeeder::class);
+        $this->call(JuniorSeeder::class);
+        $this->call(CallSeeder::class);
+        $this->call(ProductSeeder::class);
+        $this->call(BuySeeder::class);
+        $this->call(SeniorSeeder::class);
+        $this->call(StateSeeder::class);
+        $this->call(ClaimSeeder::class);
+        $this->call(BillSeeder::class);
+        $this->call(itemBillSeeder::class);
+        $this->call(CommentSeeder::class);
 
     }
 }
