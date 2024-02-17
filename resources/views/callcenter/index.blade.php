@@ -1,0 +1,1 @@
+@extends('callcenter.common.layout')

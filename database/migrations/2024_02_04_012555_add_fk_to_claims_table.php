@@ -19,6 +19,7 @@ return new class extends Migration
 
             $table->bigInteger('cod_estado')->unsigned()->after('operador_id');
             $table->foreign('cod_estado')->references('id')->on('states')->onUpdate('cascade')->onDelete('cascade');
+            
         });
     }
 

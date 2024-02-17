@@ -17,9 +17,10 @@ class BillFactory extends Factory
      */
     public function definition(): array
     {
-        $num_compra = Buy::inRandomOrder()->first()->id;
+        $num_compra =  Buy::all()->pluck('id')->count();
+        $valor = fake()->numberBetween(1, $num_compra);
         return [
-            'numero_compra' => $num_compra,
+            'numero_compra' => $valor,
             'numero_factura' => fake()->unique()->randomNumber(4),
         ];
     }

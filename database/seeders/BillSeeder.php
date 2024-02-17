@@ -15,7 +15,7 @@ class BillSeeder extends Seeder
     public function run(): void
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
-        Bill::factory()->count(10)->create();
+        Bill::factory()->count(30)->create();
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
     }
 }

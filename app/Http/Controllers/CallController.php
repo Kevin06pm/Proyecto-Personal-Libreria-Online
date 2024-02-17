@@ -43,9 +43,9 @@ class CallController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Call $call)
+    public function edit(string $id)
     {
-        //
+        $llamada = Call::find($id);
     }
 
     /**
