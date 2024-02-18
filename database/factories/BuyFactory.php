@@ -20,20 +20,14 @@ class BuyFactory extends Factory
     public function definition(): array
     {
 
-            // Obtener el número de IDs distintos en la tabla 'calls'
-            $cod_llamada = DB::table('calls')->distinct()->pluck('id')->toArray();
-
-                // Generar un valor único para cod_llamada
-                $uniqueCodLlamada = fake()->unique()->randomElement($cod_llamada);
-
-            // Resto de los campos y creación del modelo Buy
-         return [
-                'cod_llamada' => $uniqueCodLlamada,
-                'numero' => fake()->unique()->randomNumber(8),
-                'fecha' => fake()->dateTimeBetween('-1 year', 'now'),
-                'medioPago' => fake()->randomElement(['Tarjeta', 'Transferencia']), 
-                'pers_autoriz' => fake()->name()
-            ];
+        $codigo_llamada = Call::pluck('id')->toArray();
+        return [
+            'cod_llamada' => fake()->unique()->randomDigit(),
+            'numero' => fake()->phoneNumber(),
+            'fecha' => fake()->dateTimeBetween('-1 year', 'now'),
+            'medioPago' => fake()->randomElement(['Tarjeta', 'Transferencia']), 
+            'pers_autoriz' => fake()->name()
+        ];
 
 
     }

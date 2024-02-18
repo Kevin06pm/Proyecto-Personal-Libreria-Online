@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\CallController;
 use App\Http\Controllers\ContactController;
+use App\Models\Call;
 use App\Models\Contact;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +23,6 @@ Route::get('/', function () {
 
 
 Route::resource('/callcenter', ContactController::class);
+
+
+Route::get('/callcenter/call/{id}', [CallController::class, 'show']);

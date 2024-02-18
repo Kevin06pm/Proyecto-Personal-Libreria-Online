@@ -31,13 +31,13 @@ class DatabaseSeeder extends Seeder
         $this->call(ContactSeeder::class);
         $this->call(OperatorSeeder::class);
         $this->call(JuniorSeeder::class);
-        $this->call(SeniorSeeder::class);
         $this->call(CallSeeder::class);
+        $this->call(ProductSeeder::class);
+        $this->call(BuySeeder::class);
+        $this->call(SeniorSeeder::class);
         $this->call(StateSeeder::class);
         $this->call(ClaimSeeder::class);
-        $this->call(BuySeeder::class);
         $this->call(BillSeeder::class);
-        $this->call(ProductSeeder::class);
         $this->call(itemBillSeeder::class);
         $this->call(CommentSeeder::class);
 

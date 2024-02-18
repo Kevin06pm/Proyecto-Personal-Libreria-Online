@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use App\Http\Controllers\Controller;
+use App\Models\Call;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -31,15 +32,21 @@ class ContactController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'numero_documento' => 'required |regex:/^[0-9]{8}[AZ]{1}$/',
-            'tipo_documento' => 'required | in:DNI,NIF',
-            'nombre' => 'required |regex:/^[a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/',
-            'apellidos' => 'required regex:/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/',
-            'calle' => 'required | regex:/^[a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/',
-            'numero_domicilio' => 'required |  regex:/[0-9]+/',
-            'cod_postal' => 'required |  regex:/^(?:0?[1-9]|[1-4]\d|5[0-2])\d{3}$/'
+            'numero_documento' => ['required','regex:/^[0-9]{8}[A-Z]$/'],
+            'tipo_documento' => 'required|in:DNI,NIF',
+            'nombre' => ['required','regex:/^[a-zA-Z ]+$/'],
+            'apellidos' => ['required','regex:/^[a-zA-Z ]+$/'],
+            'calle' => ['required','regex:/^[a-zA-Z ]+$/'],
+            'numero_domicilio' => ['required','regex:/[0-9]+/'],
+            'cod_postal' => ['required','regex:/^\d{5}$/']
         ]);
+    
+        // Imprime los valores después de la validación
+    
+         $contacto = Contact::create($request->all());
+         return redirect()->route('callcenter.show',$contacto->id);
     }
+    
 
     /**
      * Display the specified resource.
@@ -47,7 +54,8 @@ class ContactController extends Controller
     public function show(string $id)
     {
         $contacto = Contact::find($id);
-        return view('callcenter.show', compact('contacto'));
+        $total_Llamadas = Call::where('numero_documento_contacto_id', $contacto->id)->count();
+        return view('callcenter.show', compact('contacto', 'total_Llamadas'));
     }
 
     /**
@@ -65,19 +73,19 @@ class ContactController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'numero_documento' => 'required |regex:/^[0-9]{8}[AZ]{1}$/',
-            'tipo_documento' => 'required | in:DNI,NIF',
-            'nombre' => 'required |regex:/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/',
-            'apellidos' => 'required regex:/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/',
-            'calle' => 'required | regex:/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/',
-            'numero_domicilio' => 'required |  regex:/[0-9]+/',
-            'cod_postal' => 'required |  regex:/^(?:0?[1-9]|[1-4]\d|5[0-2])\d{3}$/'
+            'numero_documento' => ['required','regex:/^[0-9]{8}[A-Z]$/'],
+            'tipo_documento' => 'required|in:DNI,NIF',
+            'nombre' => ['required','string','max:50'],
+            'apellidos' => ['required','regex:/^[a-zA-Z]+$/'],
+            'calle' => ['required','string','max:50'],
+            'numero_domicilio' => ['required','regex:/[0-9]+/'],
+            'cod_postal' => ['required','regex:/^\d{5}$/']
         ]);
 
         $contact = Contact::find($id);
         $contact->update($request->all());
 
-        return redirect()->route('callcenter.show', $contact->id)->with('EXITO!',"El contacto ha sido actualizado correctamente");
+        return redirect()->route('callcenter.show', $contact->id);
     }
 
     /**
@@ -87,7 +95,7 @@ class ContactController extends Controller
     {
         $contact = Contact::find($id);
         $contact->delete();
-        return redirect()->route('callcenter.index')->with('EXITO!',"El contacto ha sido borrado correctamente");
+        return redirect()->route('callcenter.index');
     
     }
 }
