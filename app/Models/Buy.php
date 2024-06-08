@@ -5,19 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Buy extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['fecha','medioPago','pers_autoriz'];
+    protected $fillable = ['fechaCompra', 'idLibro', 'idUsuario'];
 
-    public function call():BelongsTo{
-        return $this->belongsTo(Call::class);
+    // Relación muchos a uno con User
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'idUsuario');
     }
 
-    public function bills() : HasOne{
-        return $this->hasOne(Bill::class);
+    // Relación muchos a uno con Book
+    public function book(): BelongsTo
+    {
+        return $this->belongsTo(Book::class, 'idLibro');
     }
 }
