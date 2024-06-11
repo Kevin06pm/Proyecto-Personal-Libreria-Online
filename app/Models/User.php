@@ -5,11 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Auth\Authenticatable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class User extends Model implements AuthenticatableContract {
-    use Authenticatable;
+class User extends Model implements AuthenticatableContract
+{
+    use Authenticatable, HasFactory;
 
     protected $fillable = [
         'name',
@@ -30,7 +32,7 @@ class User extends Model implements AuthenticatableContract {
     // Relación muchos a muchos con Books (Favoritos)
     public function favoriteBooks(): BelongsToMany
     {
-        return $this->belongsToMany(Book::class, 'favorites_users', 'idUsuario', 'idLibro');
+        return $this->belongsToMany(Book::class, 'cart', 'idUsuario', 'idLibro');
     }
 
     // Relación uno a muchos con Buys (Compras)

@@ -6,7 +6,7 @@
 @endsection
 
 
-@if(\Session::get("success"))
+@if(\Session::get("error"))
     <!-- Modal -->
     <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -18,10 +18,10 @@
                     </button> -->
                 </div>
                 <div class="modal-body">
-                    <h3>{{ \Session::get('success') }}</h3>
+                    <h3>{{ \Session::get('error') }}</h3>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal" id="cerrar-carrito">Cerrar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" id="cerrar-carrito">Iniciar Sesion</button>
                 </div>
             </div>
         </div>

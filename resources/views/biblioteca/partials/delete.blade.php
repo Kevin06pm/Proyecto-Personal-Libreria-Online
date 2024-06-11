@@ -1,8 +1,8 @@
 @section('enlaceBootstrap')
+    <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> -->
     
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
 @endsection
 
 
@@ -30,29 +30,28 @@
     <!-- Scripy -->
     <script type="text/javascript">
         var successModal = document.getElementById('successModal');
+    if (successModal) {
+        successModal.classList.add('show');
+        successModal.setAttribute('aria-hidden', 'false');
+        successModal.style.display = 'block';
+    }
 
-            if (successModal) {
-                successModal.classList.add('show');
-                successModal.setAttribute('aria-hidden', 'false');
-                successModal.style.display = 'block';
-            }
+    document.getElementById('cerrar-carrito').addEventListener('click', function() {
+    var successModal = document.getElementById('successModal');
+    if (successModal) {
+        successModal.classList.remove('show');
+        successModal.setAttribute('aria-hidden', 'true');
+        successModal.style.display = 'none';
 
-            document.getElementById('cerrar-carrito').addEventListener('click', function() {
-            var successModal = document.getElementById('successModal');
-            if (successModal) {
-                successModal.classList.remove('show');
-                successModal.setAttribute('aria-hidden', 'true');
-                successModal.style.display = 'none';
+        var body = document.getElementsByTagName('body')[0];
+        body.classList.remove('modal-open');
 
-                var body = document.getElementsByTagName('body')[0];
-                body.classList.remove('modal-open');
-
-                var modalBackdrop = document.getElementsByClassName('modal-backdrop')[0];
-                if (modalBackdrop) {
-                    modalBackdrop.parentNode.removeChild(modalBackdrop);
-                }
-            }
-        });
+        var modalBackdrop = document.getElementsByClassName('modal-backdrop')[0];
+        if (modalBackdrop) {
+            modalBackdrop.parentNode.removeChild(modalBackdrop);
+        }
+    }
+    });
     </script>
     
 @endif

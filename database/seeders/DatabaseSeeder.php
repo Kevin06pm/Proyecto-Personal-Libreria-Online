@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
         $this->call(BookSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(BuySeeder::class);
-        $this->call(FavoriteUserSeeder::class);
+        // $this->call(FavoriteUserSeeder::class);
        
 
     }

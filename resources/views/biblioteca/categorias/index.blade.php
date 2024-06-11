@@ -1,6 +1,7 @@
 @extends('biblioteca.master')
 @section('enlace')
 <link rel="stylesheet" href="{{ asset('assets/css/categoriasEstilo.css') }}">
+
 @endsection
 @section('Contenido')
     <!-- 

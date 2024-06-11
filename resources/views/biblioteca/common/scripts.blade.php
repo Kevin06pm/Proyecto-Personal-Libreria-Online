@@ -7,40 +7,87 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PRUEBAS</title>
 
-  <!-- <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml"> -->
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Incluye los scripts de Bootstrap/ necesario para submenu del usuario -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</head>
 
 </head>
 
-<body id="top">
+<body>
   
-  <!-- 
-    - #GO TO TOP
-  -->
-  <a href="#top" class="go-top" data-go-top>
-    <ion-icon name="chevron-up"></ion-icon>
-  </a>
+  <script>
 
-  <!-- 
-    - custom js link
-  -->
-  <!-- <script src="{{ asset('assets/js/script.js') }}"></script> Actualizado -->
+    //------------------ SCRIPT DEL BUSCADOR ---------------------------------------//
+    document.getElementById('icono-busqueda').addEventListener('click', function() {
 
-  <!-- 
-    - ionicon link
-  -->
-  <!-- jQuery and jQuery UI -->
-  
+      var buscadorInput = document.getElementById('buscador');
+      var iconoBusqueda = document.getElementById('icono-busqueda');
+
+      if (buscadorInput.style.display === 'none') {
+          buscadorInput.style.display = 'block';
+          buscadorInput.classList.add('animated'); // Agregar clase para animar el input
+          buscadorInput.focus();
+          iconoBusqueda.classList.add('rounded-input'); // Cambiar la forma del botón
+      } else {
+          buscadorInput.classList.remove('animated'); // Remover clase para detener animación
+          buscadorInput.style.display = 'none';
+          iconoBusqueda.classList.remove('rounded-input'); // Restaurar la forma original del botón
+      }
+
+    });
 
 
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    $(document).ready(function(){
 
-  <!--AQUI SI VA EL JS DE PUBLIC-->
-  <!-- <script src="{{ asset('assets/js/script.js') }}"></script> -->
+      $('#buscador').autocomplete({
+      source: function(request, response){
+        $.ajax({
+          url: "{{route('buscador.libros')}}",
+          dataType: 'json',
+          data: {
+            term: request.term
+          },
+          success: function(data){
+            response(data)
+          }
+        })
+      },
+
+      select: function(event, ui){
+        window.location.href = ui.item.url;
+      },
+      focus: function(event, ui){
+        $('#buscador').val(ui.item.label);
+        return false;
+      }
+
+      }).autocomplete('instance')._renderItem = function(ul, item){
+      return $('<li style="background-color:black; color:gold; border" >')
+        .append("<div class='lang-wrapper'><img src='" + item.imagen + "' width='50' height='auto'>" + item.label + "</div>")
+        .appendTo(ul);
+      };   
+
+    });
+
+
+    //------------------ SCRIPT DE CHECKOUT ---------------------------------------//
+
+    var trashIcon = document.getElementById('trash-icon');
+    var mensaje = document.getElementById('mensaje');
+
+    trashIcon.addEventListener('mouseover', function() {
+        mensaje.style.display = 'block';
+        mensaje.style.left = trashIcon.offsetLeft + 'px';
+        mensaje.style.top = (trashIcon.offsetTop + trashIcon.offsetHeight) + 'px';
+    });
+
+    trashIcon.addEventListener('mouseout', function() {
+        mensaje.style.display = 'none';
+    });
+
+    <!-- ------------------------------- -->
+    
+  </script>
 
 </body>
 

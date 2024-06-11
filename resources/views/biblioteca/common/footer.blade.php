@@ -13,16 +13,16 @@
 
         <div class="footer-brand-wrapper">
 
-          <a href="./index.html" class="logo">
+          <a href="{{ url('/biblioteca') }}" class="logo">
             <img src="{{ asset("./assets/images/logo.png") }}" style="width: 350px; height: 85px;" alt="Filmlane logo">
           </a>
 
           <ul class="footer-list">
 
             <li>
-              <a href="./index.html" class="footer-link">
-              "Leer libros es una puerta a infinitos universos, donde cada página te invita a soñar, explorar y descubrir mundos llenos de magia, misterio y maravillas sin fin."
-              </a>
+              <div class="footer-link">
+                "Leer libros es una puerta a infinitos universos, donde cada página te invita a soñar, explorar y descubrir mundos llenos de magia, misterio y maravillas sin fin."
+              </div>
             </li>
 
             

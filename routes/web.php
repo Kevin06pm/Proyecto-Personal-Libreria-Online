@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\BuyController;
 use App\Http\Controllers\CallController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
@@ -23,9 +25,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//ruta para ir al perfil
+Route::get('/perfil/misdatos', function () {
+    return view('biblioteca.perfil.misDatos');
+})->name('perfil.misdatos');
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -69,5 +72,9 @@ Route::get('buscador/libros', [SearchController::class, 'libros'])->name('buscad
 
 
 Auth::routes();
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::post('cart/confirmarCompra', [BuyController::class, 'confirmarCompra'])->name('confirmarCompra');

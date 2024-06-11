@@ -3,10 +3,11 @@
 
       <div class="overlay" data-overlay></div>
 
-        <a href="{{ url('/biblioteca') }}" class="logo">
-          <img src="{{ asset("./assets/images/logo.png") }}" alt="Filmlane logo" style="width: 350px; height: 85px;">
-        </a>
-        <div class="header-actions">
+      <a href="{{ url('/biblioteca') }}" class="logo">
+        <img src="{{ asset("./assets/images/logo.png") }}" alt="Filmlane logo" style="width: 100px; height: 85px;">
+      </a>
+
+      <div class="header-actions">
 
         <form action="">
             <div class="input-group">
@@ -19,75 +20,7 @@
             </div>
         </form>
 
-        <style>
-            #buscador {
-                transition: width 0.5s ease-in-out; /* Agregar una transición de animación */
-            }
-
-            .animated {
-                width: 150px !important; /* Ancho deseado del input */
-            }
-
-            .rounded-input {
-                border-radius: 50px; /* Hacer el input más redondeado */
-            }
-        </style>
-
-        <script>
-            document.getElementById('icono-busqueda').addEventListener('click', function() {
-                var buscadorInput = document.getElementById('buscador');
-                var iconoBusqueda = document.getElementById('icono-busqueda');
-                
-                if (buscadorInput.style.display === 'none') {
-                    buscadorInput.style.display = 'block';
-                    buscadorInput.classList.add('animated'); // Agregar clase para animar el input
-                    buscadorInput.focus();
-                    iconoBusqueda.classList.add('rounded-input'); // Cambiar la forma del botón
-                } else {
-                    buscadorInput.classList.remove('animated'); // Remover clase para detener animación
-                    buscadorInput.style.display = 'none';
-                    iconoBusqueda.classList.remove('rounded-input'); // Restaurar la forma original del botón
-                }
-            });
-
-
-            
-            $(document).ready(function(){
-
-              $('#buscador').autocomplete({
-                source: function(request, response){
-                  $.ajax({
-                    url: "{{route('buscador.libros')}}",
-                    dataType: 'json',
-                    data: {
-                      term: request.term
-                    },
-                    success: function(data){
-                      response(data)
-                    }
-                  })
-                },
-
-                select: function(event, ui){
-                  window.location.href = ui.item.url;
-                },
-                focus: function(event, ui){
-                  $('#buscador').val(ui.item.label);
-                  return false;
-                }
-
-              }).autocomplete('instance')._renderItem = function(ul, item){
-                return $('<li style="background-color:black; color:gold; border" >')
-                  .append("<div class='lang-wrapper'><img src='" + item.imagen + "' width='50' height='auto'>" + item.label + "</div>")
-                  .appendTo(ul);
-              };   
-              
-            });
-          
-           
-
-        </script>
-
+      <!-- 
         <div class="lang-wrapper">
           <label for="language">
             <ion-icon name="globe-outline"></ion-icon>
@@ -96,12 +29,54 @@
           <select name="language" id="language">
             <option value="en">EN</option>
             <option value="en">ES</option>
-
           </select>
-        </div>
 
-        <a class="btn btn-primary" href="{{ route('login') }}">Sign in</a>
-        
+        </div> -->
+        <!-- --------------------------------------------------------------------------------------- -->
+
+        <!-- Verifica si el usuario está autenticado antes de mostrar su nombre -->
+
+        @auth
+        <li class="dropdown">
+        <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link">
+          <ion-icon name="person-circle-outline" style="font-size: 50px; color: gold;"></ion-icon> <!-- Icono -->
+          <!-- Aquí se muestra el nombre del usuario -->
+          <div class="d-sm-none d-lg-inline-block" style="color: gold; font-family: 'Arial', sans-serif; font-weight: bold;">
+            {{ Auth::user()->name }}
+          </div>
+</a>
+            <div class="dropdown-menu dropdown-menu-right">
+                <a href="{{ route('perfil.misdatos') }}" class="dropdown-item has-icon">
+                    <i class="far fa-user"></i> Perfil
+                </a>
+                <a href="#" class="dropdown-item has-icon">
+                    <i class="fas fa-shopping-bag"></i> Mis compras
+                </a>
+                <a href="#" class="dropdown-item has-icon">
+                    <i class="fas fa-cog"></i> Ajustes
+                </a>
+                <div class="dropdown-divider"></div>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="dropdown-item">
+                    @csrf
+                    <button type="submit" class="dropdown-item has-icon text-danger">
+                        <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                    </button>
+                </form>
+            </div>
+        </li>
+
+
+        @endauth
+
+        <!-- Si el usuario no está autenticado, muestra el enlace para iniciar sesión -->
+        @guest
+            <li>
+                <a class="btn btn-primary" href="{{ route('login') }}">Sign in</a>
+            </li>
+        @endguest
+
+        <!-- --------------------------------------------------------------------------------------- -->
 
       </div>
 
@@ -114,7 +89,7 @@
         <div class="navbar-top">
 
           <a href="./index.html" class="logo">
-            <img src="./assets/images/logo.svg" alt="Filmlane logo">
+            <img src="./assets/images/logo.png" alt="Filmlane logo">
           </a>
 
           <button class="menu-close-btn" data-menu-close-btn>
@@ -139,9 +114,9 @@
           
 
           <li>
-            <a href="{{ route('checkout') }}" class="navbar-link">
-              <ion-icon name="cart-outline" style="font-size: 2.3em; position: relative;"></ion-icon>
-              <span class="badge bg-danger" style="position: absolute; top: 50%; right: 44%;">{{\Cart::count()}}</span>
+            <a href="{{ route('checkout') }}" class="navbar-link" style="position: relative; display: inline-block;">
+                <ion-icon name="cart-outline" style="font-size: 2.3em;"></ion-icon>
+                <span class="badge bg-danger" style="position: absolute; top: 51%; right: 0;">{{ \Cart::count() }}</span>
             </a>
           </li>
 

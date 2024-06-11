@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('biblioteca.master')
 
-@section('content')
+@section('Contenido')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">

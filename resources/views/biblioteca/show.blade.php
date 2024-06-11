@@ -24,7 +24,7 @@
                         </div>
 
                         <div class="ganre-wrapper">
-                            <a href="#">{{ $book->genero }}</a> <!--categoria del libro-->
+                            <a href="{{route('categorias.show', ['id' => $book->idCategoria])}}">{{ $book->genero }}</a> <!--categoria del libro-->
                         </div>
 
                         <div class="date-time">
@@ -63,7 +63,7 @@
                             <ion-icon name="cart" style="font-size: 1.5em;"></ion-icon>
                             <span>Añadir al carrito</span> 
                         </button> -->
-                        <button >
+                        <button>
                             <form action="{{route('add')}}" method="post">
                                 @csrf
                                 <input type="hidden" name="id" value="{{ $book->idLibro }}">
@@ -76,6 +76,9 @@
                 </div>
 
         </div>
+        
     </section><!--AÑADIR AL CARRITO-->
     
+    
+
 @endsection

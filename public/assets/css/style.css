@@ -131,6 +131,8 @@
   .h2 { font-size: var(--fs-2); }
   
   .h3 { font-size: var(--fs-6); }
+
+  
   
   .section-subtitle {
     color: var(--citrine);
@@ -333,7 +335,7 @@
   /**
    * CUSTOM SLIDER & SCROLLBAR
    */
-  
+ 
   .movies-list.has-scrollbar {
     display: flex;
     justify-content: flex-start;
@@ -341,6 +343,11 @@
     overflow-x: auto;
     scroll-snap-type: inline mandatory;
     padding-bottom: 25px;
+  }
+  
+  .movies-list.has-scrollbar li {
+    flex: 0 0 auto;
+    width: calc((100% / 4) - 30px); /* Ajusta el ancho para 4 elementos visibles */
   }
   
   .has-scrollbar::-webkit-scrollbar { height: 8px; }
@@ -372,6 +379,7 @@
     left: 0;
     width: 100%;
     padding-block: 25px;
+    background-color: rgba(0, 0, 0, 0.5);
     transition: var(--transition-2);
     z-index: 4;
   }
@@ -453,6 +461,7 @@
   }
   
   .navbar-social-link {
+    
     font-size: 20px;
     color: var(--white);
     transition: var(--transition-1);
@@ -478,77 +487,26 @@
   
   /*---------------------------------------------------------*/
   
-  .caja_registro { /*nav superior*//*Estilo para la caja de registro y inicio sesion*/
   
-    display: flex;
-  
-    border-radius: 10px;
-      flex-direction: column; /*Todo lo que este dentro del elemento conteendor, se colocaran de arriba hacia abajo(column)*/
-    text-align: center;
-      justify-content: space-between; /*espaciado vertical entre elementos dentro del contendor*/
-    padding: 20px;
-      background-size: cover; /*asegura que la imagen de fondo cubra todo el contenedor(hace que encaje perfectamente en el contenedor), ajustandose*/
-  
-      
-    }
-  
-  .caja_registro .nav_superior #login { /*Estilo para boton de inicio sesion*/
-  
-  background: #f5d32b;
-  display: block;
-  width: 100%;
-  font-size: 16px;
-    padding: 2px 8px 8px 8px; /*arriba, derecha, abajo, izquierda*/
-  border-radius: 100px;
-    margin-top: 20px;
-    margin-bottom: 5px;
-    font-family: "Times New Roman", Times, serif;
-  
-    
+  /*CSS DEL BUSCADOR*/
+
+
+  #buscador {
+  transition: width 0.5s ease-in-out; /* Agregar una transición de animación */
   }
-  
-  .caja_registro .nav_superior #sign {/*Estilo para boton de regristro*/
-  
-    background: #f5d32b;
-    display: block;
-    width: 100%;
-    font-size: 16px;
-    padding: 2px 8px 8px 8px; /*arriba, derecha, abajo, izquierda*/
-    border-radius: 100px;
-    font-family: "Times New Roman", Times, serif;
-    
-    
+
+  .animated {
+  width: 150px !important; /* Ancho deseado del input */
   }
-  
-  .caja_registro ul li { /*Estilos para las listas dnetro de la caja registro*/
-  margin-top: 10px;
-    
-  font-weight: bold; /*Ancho de una letra*/
+
+  .rounded-input {
+  border-radius: 50px; /* Hacer el input más redondeado */
   }
-  
-  
-  .nav_superior a{ /*Estilos para los enlaces del menu superior*/
-    
-    color:darkgreen;
-    
-  }
-  
-  .caja_registro a:hover{/*cambio de color al pasar el mouse sobre el enlace*/
-  
-    color:rgb(255, 0, 0);
-  }
-  
-  
-  .caja_registro h3 {
-  
-    margin-bottom: 10px;
-  
-  }
-  
+
   
   
   /*-----------------------------------*\
-   * #principal
+   * #PRINCIPAL
   \*-----------------------------------*/
   
   .principal {
@@ -964,7 +922,7 @@
    * #GO TO TOP
   \*-----------------------------------*/
   
-  .go-top {
+  /* .go-top {
     position: fixed;
     bottom: 20px;
     right: 20px;
@@ -987,7 +945,7 @@
     visibility: visible;
   }
   
-  
+   */
   
   
   
@@ -1295,6 +1253,17 @@
     .lang-wrapper option { color: var(--black); }
   
   
+    #buscador {
+      transition: width 0.5s ease-in-out; /* Agregar una transición de animación */
+    }
+
+    .animated {
+      width: 150px !important; /* Ancho deseado del input */
+    }
+
+    .rounded-input {
+      border-radius: 50px; /* Hacer el input más redondeado */
+    }
   
     /**
      * principal
@@ -1652,47 +1621,6 @@
   
   }
 
-  /*CONTENEDOR DEL TOTAL DEL CARRITO*/
-
-  .summary-container {
-    margin-top: 50px;
-    padding: 20px;
-    background-color: #0074e9;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.summary-container h3 {
-    margin-bottom: 20px;
-}
-
-.summary-item {
-    font-size: 1.2em;
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.summary-item span {
-    font-weight: bold;
-    color: #007bff;
-}
-
-
-
-/*CSS DEL BUSCADOR*/
-
-
-#buscador {
-  transition: width 0.5s ease-in-out; /* Agregar una transición de animación */
-}
-
-.animated {
-  width: 150px !important; /* Ancho deseado del input */
-}
-
-.rounded-input {
-  border-radius: 50px; /* Hacer el input más redondeado */
-}
+    
 
 
