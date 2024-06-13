@@ -1,19 +1,21 @@
-<!-- resources/views/biblioteca/categorias/index.blade.php -->
 @extends('biblioteca.master')
 
 @section('Contenido')
 
 
-    <section class="top-rated">
-        <div class="contenedor">
+    <section class="recommended" style="margin-top: 100px" >
+        <div class="contenedor" >
             <h2 class="h2 section-title"> CATEGORIA
-                <strong style="color: gold;">ELEGIDA</strong>
+                <strong style="color: gold;">
+                  
+                    LIBROS
+                </strong>
             </h2>
         
-            <ul class="movies-list"> <!--EMPEQUEÑEZE LA IMAGEN-->
+            <ul class="books-list"> <!--EMPEQUEÑEZE LA IMAGEN-->
                 @foreach($categorias->books as $book) <!--FUNCION PARA QUE APAREZCAN LOS LIBROS DE LA CATEGORIA A LA CUAL SE DIO CLICK EN INDEX-->
                     <li> 
-                        <div class="movie-card">
+                        <div class="book-card">
                             <a href="{{ route('biblioteca.show', ['id' => $book->idLibro]) }}"> <!--LINK CUANDO LE DES CLICK A LA IMAGEN TE LLEVARA A SHOW A VER LOS DETALLES DEL LIBRO-->
                                 <figure class="card-banner">
                                     <img src="{{ asset($book->imagenPortada) }}" alt="{{ $book->titulo }}"> <!--IMAGEN PORTADA DEL LIBRO -->

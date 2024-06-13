@@ -9,13 +9,37 @@
 
     <!-- Incluye los scripts de Bootstrap/ necesario para submenu del usuario -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-</head>
+    <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
 
 </head>
 
 <body>
   
+
+  
   <script>
+
+  /*---------------------- SCRIPT PARA menu movil, tablet--------------------------*/
+    const navOpenBtn = document.querySelector("[data-menu-open-btn]");
+    const navCloseBtn = document.querySelector("[data-menu-close-btn]");
+    const navbar = document.querySelector("[data-navbar]");
+    const overlay = document.querySelector("[data-overlay]");
+
+    const navElemArr = [navOpenBtn, navCloseBtn, overlay];
+
+    for (let i = 0; i < navElemArr.length; i++) {
+
+      navElemArr[i].addEventListener("click", function () {
+
+        navbar.classList.toggle("active");
+        overlay.classList.toggle("active");
+        document.body.classList.toggle("active");
+
+      });
+
+    }
+
+
 
     //------------------ SCRIPT DEL BUSCADOR ---------------------------------------//
     document.getElementById('icono-busqueda').addEventListener('click', function() {

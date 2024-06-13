@@ -17,7 +17,7 @@ class BuySeeder extends Seeder
     public function run(): void
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
-        Buy::factory()->count(20)->create();
+        Buy::factory()->count(2)->create();
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
     }
 }

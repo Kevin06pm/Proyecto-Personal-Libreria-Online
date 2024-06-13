@@ -5,12 +5,50 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Http\Controllers\Controller;
+use App\Models\Buy;
 use Illuminate\Http\Request;
 use Cart;
 use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
+
+    //UCONFIRMAR SI USUARIO ESTA REGITRADO O NO PARA LA COMPRA 1º
+
+    public function checkout()
+    {
+        //verficams si el usuario está autenticado
+        $userId = Auth::id(); 
+
+        // Obtener los artículos del carrito y el total
+        $cartItems = Cart::content();
+        $total = Cart::total();
+
+        // // Si no esta autenticado: 
+        // if (!$userId) {
+        //     return redirect()->route('login')->with('success', 'Necesitas estar registrado para realizar una compra.');
+        // }
+
+        // Crear registros de compra
+        $buyRecords = [];
+        foreach ($cartItems as $item) {
+            $buy = Buy::create([
+                'idLibro' => $item->id,
+                'idUsuario' => $userId,
+                'fechaCompra' => now(),
+            ]);
+            $buyRecords[] = $buy;
+        }
+
+        // Pasar los datos a la vista
+        return view('biblioteca.carrito.checkout', [
+            'cartItems' => $cartItems,
+            'total' => $total,
+            'userId' => $userId,
+            'buyRecords' => $buyRecords,
+        ]);
+    
+    }
     public function add(Request $request)
     {
         $libro = Book::find($request->id);
@@ -29,6 +67,7 @@ class CartController extends Controller
                 'autor' => $libro->autor
             ]
         ]);
+        
 
         return redirect()->back()->with('success', 'Libro agregado: ' . $libro->titulo);
     }
@@ -82,18 +121,6 @@ class CartController extends Controller
 
     }
 
-    //CONFIRMAR SI USUARIO ESTA REGITRADO O NO PARA LA COMPRA 1º
-
-    public function checkout()
-    {
-        if (Auth::check()) {
-            // Si está autenticado, mostrar la página de checkout
-            return view('biblioteca.carrito.checkout');
-        } else {
-            // Si no está autenticado, redirigirlo al inicio de sesión con un mensaje de error
-            return redirect()->route('login')->with('error', 'Debes iniciar sesión para comprar libros.');
-        }
-    }
-
-
+    
 }
+

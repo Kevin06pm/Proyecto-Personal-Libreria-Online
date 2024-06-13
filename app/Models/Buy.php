@@ -10,7 +10,8 @@ class Buy extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['fechaCompra', 'idLibro', 'idUsuario'];
+    protected $primaryKey = 'idCompra'; // Especifica la clave primaria
+    protected $fillable = ['idLibro', 'idUsuario', 'fechaCompra'];
 
     // Relación muchos a uno con User
     public function user(): BelongsTo
@@ -23,4 +24,5 @@ class Buy extends Model
     {
         return $this->belongsTo(Book::class, 'idLibro');
     }
+
 }

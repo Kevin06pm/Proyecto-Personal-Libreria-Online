@@ -14,7 +14,6 @@
                     <p><strong>Email:</strong> {{ Auth::user()->email }} </p>
                     <p><strong>Libros que lees al año:</strong> 1 libro/año</p>
                     <br>
-                    <button class="btn btn-primary">Editar</button>
                 </div>
             </div>
         </div>

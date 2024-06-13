@@ -25,12 +25,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//ruta para ir al perfil
-Route::get('/perfil/misdatos', function () {
-    return view('biblioteca.perfil.misDatos');
-})->name('perfil.misdatos');
-
-//////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////   rutas de la pagina principal   ////////////////////////////
 
 // ir al index de biblioteca
 Route::get('/biblioteca', [BookController::class, 'index']);
@@ -38,7 +33,7 @@ Route::get('/biblioteca', [BookController::class, 'index']);
 // ir al show de biblioteca
 Route::get('/biblioteca/{id}', [BookController::class, 'show'])->name('biblioteca.show');
 
-//////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////  rutas de categoria   ///////////////////////////////////
 
 // ir al index de categoria
 Route::get('/categorias', [CategoryController::class, 'index'])->name('categorias.index');
@@ -46,15 +41,7 @@ Route::get('/categorias', [CategoryController::class, 'index'])->name('categoria
 //ir al show de categoria
 Route::get('/categorias/{id}', [CategoryController::class, 'show'])->name('categorias.show');
 
-//////////////////////////////////////////////////////////////////////////////////////////////
-
-//ir al index de carrito
-// Route::get('/biblioteca/carrito', [FavoritesUserController::class, 'index'])->name('carrito.index');
-
-
-//ir al show de carrito
-
-//////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////  rutas carrito /////////////////////////////////////////
 
 // par el carrito
 Route::post('cart/add', [CartController::class, 'add'])->name('add');
@@ -71,10 +58,20 @@ Route::post('cart/decreaseQuantity', [CartController::class, 'decreaseQuantity']
 Route::get('buscador/libros', [SearchController::class, 'libros'])->name('buscador.libros');
 
 
+/////////////////////////////// Rutas de login  /////////////////////////////////////////////////77
+
 Auth::routes();
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+///////////////////////////////   rutas del perfil  /////////////////////////////////////////
+
+//ruta para ir al perfil
+Route::get('/perfil/misdatos', function () {
+    return view('biblioteca.perfil.misDatos');
+})->name('perfil.misdatos');
+
+//ruta para ir a la lista de compras
+Route::get('/misCompras', [BuyController::class, 'misCompras'])->name('misCompras');
 
 
-Route::post('cart/confirmarCompra', [BuyController::class, 'confirmarCompra'])->name('confirmarCompra');
+

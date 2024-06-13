@@ -39,8 +39,9 @@ class BookController extends Controller
      */
     public function show($id)
     {
+        $books = Book::all();
         $book = Book::findOrFail($id);
-        return view('biblioteca.show', compact('book'));
+        return view('biblioteca.show', compact('books', 'book'));
     }
 
     /**

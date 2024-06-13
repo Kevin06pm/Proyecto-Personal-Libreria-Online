@@ -14,7 +14,7 @@
         <div class="footer-brand-wrapper">
 
           <a href="{{ url('/biblioteca') }}" class="logo">
-            <img src="{{ asset("./assets/images/logo.png") }}" style="width: 350px; height: 85px;" alt="Filmlane logo">
+            <img src="{{ asset("./assets/images/logos.png") }}" style="width: 200px; height: auto;" alt="logo">
           </a>
 
           <ul class="footer-list">
@@ -35,22 +35,18 @@
 
         <div class="quicklink-wrapper">
 
-          <ul class="quicklink-list">
+          <ul class="list-footlink">
 
             <li>
-              <a href="#" class="quicklink-link">Faq</a>
+              <a href="#" class="quicklink-link">Ayuda</a>
             </li>
 
             <li>
-              <a href="#" class="quicklink-link">Help center</a>
+              <a href="#" class="quicklink-link">Terminos de uso</a>
             </li>
 
             <li>
-              <a href="#" class="quicklink-link">Terms of use</a>
-            </li>
-
-            <li>
-              <a href="#" class="quicklink-link">Privacy</a>
+              <a href="#" class="quicklink-link">Privacidad</a>
             </li>
 
           </ul>
@@ -92,10 +88,9 @@
       <div class="contenedor">
 
         <p class="copyright">
-          &copy; 2024 <a href="#">papi</a>. All Rights Reserved
+          &copy; 2025 <a href="#">proyecto final</a> 
         </p>
 
-        <img src="./assets/images/footer-bottom-img.png" alt="Online banking companies logo" class="footer-bottom-img">
 
       </div>
     </div>

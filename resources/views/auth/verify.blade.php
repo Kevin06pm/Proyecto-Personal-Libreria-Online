@@ -5,7 +5,7 @@
 @endsection
 
 @section('Contenido')
-<div class="container">
+<div class="container" style="margin-top: 20px">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">

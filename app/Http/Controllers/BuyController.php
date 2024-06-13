@@ -9,15 +9,14 @@ use Illuminate\Support\Facades\Auth;
 
 class BuyController extends Controller
 {
-    public function confirmarCompra(Request $request)
-    {
-        $buy = Buy::create([
-            'fechaCompra' => now(),
-            'idLibro' => $request->idLibro,
-            'idUsuario' => Auth::id()
-        ]);
 
-        // Redirigir a una página de confirmación o donde desees
-        return redirect()->route('biblioteca')->with('success', 'Compra confirmada con éxito');
+    public function misCompras()
+    {
+        // Obtener todas las compras del usuario actual
+        $userId = auth()->id();
+        $compras = Buy::where('idUsuario', $userId)->with('book')->get();
+
+        // Devolver la vista con las compras
+        return view('biblioteca.perfil.misCompras', compact('compras'));
     }
 }

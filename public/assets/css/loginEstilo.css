@@ -1,3 +1,5 @@
+
+/* --------------------------- ESTILO DEL LOGIN ----------------------------------*/
 .login-section {
     background-size: cover;
     background-position: center;
@@ -18,7 +20,6 @@
     background-color: rgba(255, 255, 255, 0.9);
     border-radius: 10px;
     padding: 30px;
-    /* background: url("../images/portada2.png") no-repeat center center;  */
 
 }
 
@@ -60,10 +61,9 @@
 }
 
 
-/*REGISTER*/
+/* --------------------------- ESTILO DEL REGISTER ----------------------------------*/
 
 .register-section {
-    background-image: url('ruta/a/la/imagen.jpg'); 
     background-size: cover;
     background-position: center;
     height: 100vh;
